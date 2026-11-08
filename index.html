@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Лендинг о фотографии: жанры, оборудование, галерея и полезные ссылки для начинающих фотографов.">
+  <title>Фотография как искусство видеть — лендинг</title>
+
+  <style>
+    /* ===== База ===== */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      color: #e6e8ee;
+      background: #0f1115;
+    }
+
+    a {
+      color: #ffb454;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* Убираем жесткие размеры, чтобы работал object-fit */
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Картинка заполняет блок и обрезается без искажений */
+    }
+
+    /* ===== Шапка ===== */
+    header {
+      padding: 60px 20px 40px;
+      text-align: center;
+      background: #171a21;
+      border-bottom: 1px solid #2a2f3a;
+    }
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 2.4rem;
+      line-height: 1.2;
+    }
+    header > p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: #9aa3b2;
+    }
+
+    /* ===== Навигация ===== */
+    nav { margin-top: 24px; }
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    nav a {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 1px solid #2a2f3a;
+      border-radius: 20px;
+      color: #e6e8ee;
+    }
+    nav a:hover {
+      background: #ffb454;
+      color: #111;
+      text-decoration: none;
+    }
+
+    /* ===== Контейнер ===== */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    /* ===== Разделы — карточки ===== */
+    main > section {
+      background: #171a21;
+      border: 1px solid #2a2f3a;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    main > section > h2 {
+      margin: 0 0 16px;
+      font-size: 1.6rem;
+      border-left: 4px solid #ffb454;
+      padding-left: 12px;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: #2a2f3a;
+      margin: 0 auto;
+      max-width: 1000px;
+    }
+    main > hr { display: none; }
+
+    /* ===== Статьи ===== */
+    article {
+      background: #1e222b;
+      border: 1px solid #2a2f3a;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+    article h3 {
+      margin: 0 0 8px;
+      color: #ffb454;
+      font-size: 1.2rem;
+    }
+    article h4 {
+      margin: 0 0 8px;
+      color: #ffb454;
+      font-size: 1rem;
+    }
+    article section {
+      margin-top: 16px;
+      padding-left: 14px;
+      border-left: 2px solid #7c5cff;
+    }
+
+    /* ===== Картинки ===== */
+    figure {
+      margin: 20px 0;
+      border: 1px solid #2a2f3a;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #141720; 
+    }
+
+    /* Задаем единые пропорции для всех обычных картинок (16:9) */
+    figure img {
+      aspect-ratio: 16 / 9; 
+    }
+
+    figcaption {
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      color: #9aa3b2;
+      background: #141720;
+      border-top: 1px solid #2a2f3a;
+    }
+
+    /* ===== Галерея ===== */
+    #gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    #gallery > h2,
+    #gallery > p { grid-column: 1 / -1; }
+    
+    #gallery figure { 
+      margin: 0; 
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Для галереи делаем чуть другие пропорции (4:3) */
+    #gallery figure img {
+      aspect-ratio: 4 / 3;
+      flex-grow: 1;
+    }
+
+    /* ===== Цитата ===== */
+    blockquote {
+      margin: 16px 0 0;
+      padding: 14px 18px;
+      border-left: 4px solid #ffb454;
+      background: #1a1d26;
+      border-radius: 6px;
+      font-style: italic;
+    }
+    blockquote p { margin: 0; }
+    blockquote footer {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #9aa3b2;
+      font-style: normal;
+    }
+
+    mark {
+      background: #ffb454;
+      color: #111;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    /* ===== Совет дня ===== */
+    aside {
+      margin-top: 20px;
+      padding: 16px 20px;
+      border: 1px dashed #ffb454;
+      border-radius: 10px;
+    }
+    aside h3 {
+      margin: 0 0 6px;
+      color: #ffb454;
+      font-size: 1.05rem;
+    }
+
+    /* ===== Список определений ===== */
+    dl {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 8px 18px;
+      margin: 16px 0 0;
+    }
+    dt { font-weight: 700; color: #ffb454; }
+    dd { margin: 0; }
+
+    /* ===== Аккордеон ===== */
+    details {
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: #1e222b;
+      border: 1px solid #2a2f3a;
+      border-radius: 8px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #7c5cff;
+    }
+
+    /* ===== Подвал ===== */
+    body > footer {
+      padding: 36px 20px;
+      text-align: center;
+      color: #9aa3b2;
+      background: #171a21;
+      border-top: 1px solid #2a2f3a;
+    }
+    body > footer h2 {
+      margin: 0 0 12px;
+      color: #e6e8ee;
+      font-size: 1.2rem;
+    }
+    address {
+      font-style: normal;
+      line-height: 1.9;
+      margin-bottom: 12px;
+    }
+    body > footer small { font-size: 0.85rem; }
+
+    /* ===== Адаптив ===== */
+    @media (max-width: 640px) {
+      header { padding: 40px 16px 28px; }
+      header h1 { font-size: 1.8rem; }
+      main { padding: 16px 12px 32px; }
+      main > section { padding: 16px; }
+      article { padding: 14px; }
+      dl { grid-template-columns: 1fr; gap: 2px 0; }
+      dd { margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header>
+    <h1>Фотография как искусство видеть</h1>
+    <p>
+      <em>Небольшой сайт о том, как научиться замечать свет, момент и композицию
+      даже на обычную камеру смартфона.</em>
+    </p>
+
+    <nav aria-label="Основная навигация">
+      <ul>
+        <li><a href="#about">О фотографии</a></li>
+        <li><a href="#genres">Жанры</a></li>
+        <li><a href="#gear">Оборудование</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#links">Полезные ссылки</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <hr>
+
+  <main>
+
+    <!-- РАЗДЕЛ 1 -->
+    <section id="about">
+      <h2>О фотографии</h2>
+
+      <p>
+        <dfn>Фотография</dfn> — это способ зафиксировать мгновение и рассказать историю
+        без слов. Хороший кадр рождается не в камере, а в голове фотографа: сначала
+        нужно увидеть сюжет, а уже потом нажать на кнопку.
+      </p>
+
+      <figure>
+        <img src="photo-main.jpg"
+             alt="Пейзаж на закате: силуэт фотографа со штативом на фоне оранжевого неба">
+        <figcaption>
+          Закатный свет — один из самых выразительных инструментов в арсенале фотографа.
+        </figcaption>
+      </figure>
+
+      <article>
+        <h3>Почему это важно</h3>
+        <p>
+          Умение видеть свет и композицию пригодится не только в творчестве, но и в
+          повседневной жизни — от оформления соцсетей до презентаций на работе.
+        </p>
+
+        <section>
+          <h4>Три кита хорошего кадра</h4>
+          <ol>
+            <li><strong>Свет</strong> — мягкий или жёсткий, тёплый или холодный.</li>
+            <li><strong>Композиция</strong> — правило третей, линии, ритм.</li>
+            <li><strong>Момент</strong> — то, что нельзя повторить.</li>
+          </ol>
+        </section>
+      </article>
+
+      <aside>
+        <h3>Совет дня</h3>
+        <p>
+          <mark>Снимайте в «золотой час»</mark> — за час до заката и час после рассвета,
+          когда свет мягкий и тёплый.
+        </p>
+      </aside>
+    </section>
+
+    <hr>
+
+    <!-- РАЗДЕЛ 2 -->
+    <section id="genres">
+      <h2>Жанры фотографии</h2>
+
+      <p>
+        Жанр задаёт настроение и правила. Ниже — несколько направлений, с которых
+        удобно начинать.
+      </p>
+
+      <article>
+        <h3>Пейзаж</h3>
+        <p>
+          Пейзажная съёмка учит терпению: нужно дождаться нужного света и погоды.
+        </p>
+
+        <figure>
+          <img src="photo-landscape.jpg"
+               alt="Горный пейзаж с озером и отражением облаков в воде">
+          <figcaption>Отражения в воде — классический приём в пейзаже.</figcaption>
+        </figure>
+      </article>
+
+      <article>
+        <h3>Портрет</h3>
+        <p>
+          В портрете главное — <cite>эмоция и взгляд</cite>. Техника вторична.
+        </p>
+
+        <blockquote>
+          <p>«Фотография — это правда, а кино — это правда двадцать четыре раза в секунду».</p>
+          <footer>— <cite>Жан-Люк Годар</cite></footer>
+        </blockquote>
+      </article>
+
+      <article>
+        <h3>Стрит-фотография</h3>
+        <p>
+          Съёмка на улице без постановки: ловим случайные сцены и живые эмоции.
+        </p>
+
+        <section>
+          <h4>Что взять с собой</h4>
+          <ul>
+            <li>Компактную камеру или смартфон;</li>
+            <li>Запасной аккумулятор;</li>
+            <li>Удобную обувь и терпение.</li>
+          </ul>
+        </section>
+      </article>
+    </section>
+
+    <hr>
+
+    <!-- РАЗДЕЛ 3 -->
+    <section id="gear">
+      <h2>Оборудование</h2>
+
+      <p>
+        Начинать можно с чего угодно — главное, чтобы камера была под рукой.
+        Ниже — базовый набор для старта.
+      </p>
+
+      <dl>
+        <dt>Камера</dt>
+        <dd>Подойдёт даже смартфон с хорошей матрицей.</dd>
+
+        <dt>Объектив</dt>
+        <dd>Универсальный «полтинник» (50 мм) — отличный выбор для портретов и прогулок.</dd>
+
+        <dt>Штатив</dt>
+        <dd>Помогает на длинных выдержках и при съёмке пейзажей на рассвете.</dd>
+      </dl>
+
+      <details>
+        <summary>Что НЕ нужно покупать новичку</summary>
+        <ul>
+          <li>Дорогую полнокадровую камеру;</li>
+          <li>Набор из десяти объективов;</li>
+          <li>Профессиональный свет — пока хватит окна.</li>
+        </ul>
+      </details>
+    </section>
+
+    <hr>
+
+    <!-- РАЗДЕЛ 4 -->
+    <section id="gallery">
+      <h2>Галерея</h2>
+
+      <p>
+        Несколько кадров для вдохновения — снято в разных жанрах и в разное время суток.
+      </p>
+
+      <figure>
+        <img src="photo-night-city.jpg"
+             alt="Городской пейзаж ночью с огнями и отражениями в лужах">
+        <figcaption>Ночной город: длинная выдержка и отражения.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="photo-portrait.jpg"
+             alt="Портрет человека в мягком естественном свете у окна">
+        <figcaption>Портрет у окна: мягкий естественный свет.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="photo-autumn.jpg"
+             alt="Лесная тропинка осенью с золотыми листьями на деревьях">
+        <figcaption>Осенний лес — идеальное время для пейзажа.</figcaption>
+      </figure>
+    </section>
+
+    <hr>
+
+    <!-- РАЗДЕЛ 5 -->
+    <section id="links">
+      <h2>Полезные ссылки</h2>
+
+      <p>Материалы, которые помогут начинающему фотографу расти быстрее:</p>
+
+      <ul>
+        <li>
+          <a href="https://unsplash.com/" target="_blank" rel="noopener">
+            Unsplash
+          </a> — огромная библиотека бесплатных фотографий для вдохновения и референсов.
+        </li>
+        <li>
+          <a href="https://photogeek.ru/" target="_blank" rel="noopener">
+            Фотожик
+          </a> — уроки, статьи по обработке и обзоры техники на русском языке.
+        </li>
+        <li>
+          <a href="https://www.dpreview.com/" target="_blank" rel="noopener">
+            DPReview
+          </a> — авторитетный международный сайт с обзорами камер и объективов.
+        </li>
+        <li>
+          <a href="https://validator.w3.org/" target="_blank" rel="noopener">
+            W3C Markup Validator
+          </a> — сервис для проверки правильности HTML-разметки этого сайта.
+        </li>
+      </ul>
+
+      <p>
+        Автор лендинга: <abbr title="Студент программы по веб-разработке">Студницкая Софья Максимовна</abbr>.
+        Страница создана <time datetime="2026-11-06">6 ноября 2026 года</time>.
+      </p>
+    </section>
+
+  </main>
+
+  <hr>
+
+  <!-- ПОДВАЛ -->
+  <footer>
+    <h2>Контакты</h2>
+    <address>
+      Почта: <a href="mailto:ssofya_07@mail.ru">ssofya_07@mail.ru</a><br>
+    </address>
+  </footer>
+
+</body>
+</html>
